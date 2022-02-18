@@ -24,21 +24,28 @@ public class Parser{
         return  HTML;
     }
 
-/*public static void getTextFromHtml(String list) throws IOException {
+public static void getTextFromHtml(String list) throws IOException {
 
-        String newList = parse(list);
-Document document = Jsoup.parse(String.valueOf(newList));
+
+
+}
+
+
+
+        //Set<String> newList = parse(list);
+/*Document document = Jsoup.parse(String.valueOf(newList));
     Element link = document.select("a").first();
-    System.out.println("Text: " + ((Element) link).text());
 
-}*/
-/*Document document = Jsoup.parse(html);
-Element link = document.select("a").first();
-System.out.println("Text: " + link.text());
+        System.out.println("Text: " + ((Element) link).text());
+     */
+
+
+
+
+  /*Document document = Jsoup.parse(String.valueOf(newList));
+    Element link = document.select("a").first();
+    System.out.println("Text: " + link.text());
 */
-
-
-
 
         /*
 public static void ParseTitlesAndLinks(String list) throws IOException {

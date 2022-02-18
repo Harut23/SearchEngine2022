@@ -20,7 +20,7 @@ public class Crawler extends Parser{
     }
 
     //we get all URLs from a web page
-    public static Set<String> findLinks(String url) throws IOException {
+    public static void findLinks(String url) throws IOException {
 
         Set<String> links = new HashSet<>();
 
@@ -38,15 +38,21 @@ public class Crawler extends Parser{
 
         //return links;
 
-         Set<String>set=parse(links.toString());
 
-          return set;
+
+        // Set<String>set=parse(links.toString());
+
+        //System.out.println(set);
+
+
+    /*Set<String> result = parse(links.toString());
+        Document docc = Jsoup.parse(String.valueOf(result));
+        Elements paragraphs = docc.select("p");
+        for(Element paragraph : paragraphs) {
+            System.out.println(paragraph.text());
+        }*/
     }
-
-
-
-
-
+}
 
 
 
@@ -83,4 +89,4 @@ public class Crawler extends Parser{
 */
 
 
-}
+
