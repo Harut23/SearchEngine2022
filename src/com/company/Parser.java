@@ -10,7 +10,34 @@ import java.util.Set;
 
 public class Parser{
 
-    public static Set<String> parse(String Links) throws IOException { //html cody pahum a stringi mej
+
+    public static Set<String> getHTML(String Links) throws IOException { //html cody pahum a stringi mej
+
+        // Set<String>allLinks = findLinks(Links);
+        // HTML = null;
+        Set<String>HTML = new HashSet<>();
+
+        // for(String st:allLinks) {
+        //Document document = Jsoup.connect(String.valueOf(Links)).get();
+        Document document = Jsoup.connect(Links).get();
+
+        //System.out.println(document.toString());
+        HTML = Collections.singleton(document.toString());
+        //}
+        return  HTML;
+    }
+
+
+
+
+
+
+
+
+
+
+
+    /*public static Set<String> parse(String Links) throws IOException { //html cody pahum a stringi mej
 
         // Set<String>allLinks = findLinks(Links);
         // HTML = null;
@@ -23,13 +50,7 @@ public class Parser{
         //}
         return  HTML;
     }
-
-public static void getTextFromHtml(String list) throws IOException {
-
-
-
-}
-
+*/
 
 
         //Set<String> newList = parse(list);

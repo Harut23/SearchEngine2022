@@ -35,8 +35,7 @@ public class connectionDB {
                 Class.forName("com.mysql.cj.jdbc.Driver");
 
                 // Registering SQL drivers
-                con = DriverManager.getConnection(DB_URL, USER,
-                        PASS);
+                con = DriverManager.getConnection(DB_URL, USER, PASS);
             }
 
             // Catch block to handle database exceptions

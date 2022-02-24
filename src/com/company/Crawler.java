@@ -20,7 +20,7 @@ public class Crawler extends Parser{
     }
 
     //we get all URLs from a web page
-    public static void findLinks(String url) throws IOException {
+    public static Set<String> findLinks(String url) throws IOException {
 
         Set<String> links = new HashSet<>();
 
@@ -36,8 +36,7 @@ public class Crawler extends Parser{
             links.add(element.attr("href"));
         }
 
-        //return links;
-
+        return links;
 
 
         // Set<String>set=parse(links.toString());
