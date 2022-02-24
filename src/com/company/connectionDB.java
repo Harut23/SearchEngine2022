@@ -39,18 +39,8 @@ public class connectionDB {
             }
 
             // Catch block to handle database exceptions
-            catch (SQLException e) {
-
+            catch (SQLException | ClassNotFoundException e) {
                 // Print the line number where exception occurs
-                e.printStackTrace();
-            }
-
-            // Catch block to handle exception
-            // if class not found
-            catch (ClassNotFoundException e) {
-
-                // Function prints the line number
-                // where exception occurs
                 e.printStackTrace();
             }
 
