@@ -16,8 +16,12 @@ public class Crawler {
 
             ArrayList<WebPage> pages = db.getLinks(4);
 
-            for(WebPage page:pages) {
-                System.out.println(page.crawledNumber);
+            for(WebPage page : pages) {
+                System.out.println(page.url);
+             Parser parser = new Parser(page.url);
+            parser.parse();
+                System.out.println(parser.getHtml());
+
             }
         }
         // Catch block to handle database exceptions
@@ -27,6 +31,9 @@ public class Crawler {
             e.printStackTrace();
         }
 
+        catch (IOException io){
+            System.out.println("error");;
+        }
 
 
 

@@ -2,42 +2,55 @@ package com.company;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 
 import java.io.IOException;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
 
-public class Parser{
+public class Parser {
+    String html;
+    ArrayList<String> links;
+    Document document;
 
-
-    public static Set<String> getHTML(String Links) throws IOException { //html cody pahum a stringi mej
-
-        // Set<String>allLinks = findLinks(Links);
-        // HTML = null;
-        Set<String>HTML = new HashSet<>();
-
-        // for(String st:allLinks) {
-        //Document document = Jsoup.connect(String.valueOf(Links)).get();
-        Document document = Jsoup.connect(Links).get();
-
-        //System.out.println(document.toString());
-        HTML = Collections.singleton(document.toString());
-        //}
-        return  HTML;
+    public Parser(String url) throws IOException {
+        document = Jsoup.connect(url).get();
     }
 
+    public void parse() { //html cody pahum a stringi mej
+        parseLinks();
+        parseText();
+        //System.out.println(document.toString());
+//        html = Collections.singleton(document.toString());
+    }
+
+    private void parseLinks() {
+        Elements elements = document.select("a[href]");
 
 
+        for (Element element : elements) {
+            if (element != null) {
+                links.add(element.attr("href"));
+            }
+        }
+    }
+    private void parseText() {
 
+        Element element = document.select("a").first();
 
+        if (element != null) {
+            html = element.text();
+        }
+    }
 
+    public String getHtml() {
+        return html;
+    }
 
-
-
-
-
-    /*public static Set<String> parse(String Links) throws IOException { //html cody pahum a stringi mej
+    public ArrayList<String> getLinks() {
+        return links;
+    }
+/*public static Set<String> parse(String Links) throws IOException { //html cody pahum a stringi mej
 
         // Set<String>allLinks = findLinks(Links);
         // HTML = null;
@@ -53,7 +66,7 @@ public class Parser{
 */
 
 
-        //Set<String> newList = parse(list);
+    //Set<String> newList = parse(list);
 /*Document document = Jsoup.parse(String.valueOf(newList));
     Element link = document.select("a").first();
 
@@ -76,7 +89,6 @@ public static void ParseTitlesAndLinks(String list) throws IOException {
     titleElements.forEach(titleElement -> System.out.println(titleElement.attr("title")+"|" +titleElement.attr("href")));
 
     }*/
-
 
 
 }
