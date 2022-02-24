@@ -36,7 +36,7 @@ public class Database {
         try {
 
             // Write a statement
-            String sql = "SELECT * FROM table1 ORDER BY CrawledNumber DESC ";
+            String sql = "SELECT * FROM table1 ORDER BY CrawledNumber ASC ";
 
 
             // Execute the query
@@ -44,15 +44,14 @@ public class Database {
             ResultSet resultSet = statement.executeQuery();
 
 
-            while (resultSet.next()) {
-
+            while (resultSet.next() && count > 0) {
+                --count;
                 int ID = resultSet.getInt("ID");
                 String url = resultSet.getString("URL");
                 int crawledNumber = resultSet.getInt("CrawledNumber");
 
                 result.add(new WebPage(ID,crawledNumber,url));
 
-                --count;
             }
 
 
