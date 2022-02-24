@@ -31,24 +31,18 @@ public class Database {
     }
 
 
-    public ArrayList<WebPage> getLinks(int count, int maxCrawledNumber) {
+    public ArrayList<WebPage> getLinks(int count) {
 
         try {
 
             // Write a statement
-            String sql = "select * from table1 where ID=1";
+            String sql = "SELECT * FROM table1 ORDER BY CrawledNumber DESC ";
 
 
             // Execute the query
             PreparedStatement statement = connection.prepareStatement(sql);
             ResultSet resultSet = statement.executeQuery();
 
-            // Process the results
-            // System.out.println("ID\t\tURL\t\t");
-
-            // Condition check using next() method
-            // Holds true till there is single element remaining
-            // in the object
 
             while (resultSet.next()) {
 
@@ -57,15 +51,8 @@ public class Database {
                 int crawledNumber = resultSet.getInt("CrawledNumber");
 
                 result.add(new WebPage(ID,crawledNumber,url));
-                //
-//                // Print and display ID, Link and Text
-//                System.out.println(ID + "\t\t" + Links + "\t\t");
 
-                // Set<String> set = new Crawler().findLinks(Links);
-                //  System.out.println(set);
-                //  new Parser().getTextFromHtml(String.valueOf(new Parser().parse(Links)));
-
-                // new  Crawler().findLinks(Links);
+                --count;
             }
 
 
