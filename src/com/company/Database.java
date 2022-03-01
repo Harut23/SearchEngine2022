@@ -69,13 +69,15 @@ public class Database {
 
     public void insertLinks(ArrayList<String> links) throws SQLException {
         for (String link : links) {
-            String sqlCmd = "INSERT INTO table1(url) VALUES " + link + ";";
+            String sqlCmd = "INSERT INTO table1(URL) VALUES " + link + ";";
             PreparedStatement statement = connection.prepareStatement(sqlCmd);
             statement.executeQuery();
         }
     }
 
-    public void insertContent(int id, ArrayList<String> textContent) {
-
+    public void insertContent(int id, ArrayList<String> textContent) throws SQLException {
+        String sqlCmd = "INSERT INTO table2(id, text) VALUES " + id + ", " + textContent.toString() + ";";
+        PreparedStatement statement = connection.prepareStatement(sqlCmd);
+        statement.executeQuery();
     }
 }
