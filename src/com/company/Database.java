@@ -36,11 +36,11 @@ public class Database {
         try {
 
             // Write a statement
-            String sql = "SELECT * FROM table1 ORDER BY CrawledNumber ASC ";
+            String sqlCmd = "SELECT * FROM table1 ORDER BY CrawledNumber ASC ";
 
 
             // Execute the query
-            PreparedStatement statement = connection.prepareStatement(sql);
+            PreparedStatement statement = connection.prepareStatement(sqlCmd);
             ResultSet resultSet = statement.executeQuery();
 
 
@@ -64,6 +64,18 @@ public class Database {
             System.out.println(e);
         }
         return result;
+
+    }
+
+    public void insertLinks(ArrayList<String> links) throws SQLException {
+        for (String link : links) {
+            String sqlCmd = "INSERT INTO table1(url) VALUES " + link + ";";
+            PreparedStatement statement = connection.prepareStatement(sqlCmd);
+            statement.executeQuery();
+        }
+    }
+
+    public void insertContent(int id, ArrayList<String> textContent) {
 
     }
 }
