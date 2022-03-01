@@ -23,7 +23,7 @@ public class Database {
 
     public void connect() throws ClassNotFoundException, SQLException {
 
-        // Loading DB(SQL) drivers
+        // Loading DB drivers
         Class.forName("com.mysql.cj.jdbc.Driver");
 
         // Registering SQL drivers
@@ -35,11 +35,10 @@ public class Database {
 
         try {
 
-            // Write a statement
+
             String sqlCmd = "SELECT * FROM table1 ORDER BY CrawledNumber ASC ";
 
 
-            // Execute the query
             PreparedStatement statement = connection.prepareStatement(sqlCmd);
             ResultSet resultSet = statement.executeQuery();
 
@@ -55,12 +54,8 @@ public class Database {
             }
 
 
-        }
+        } catch (SQLException e) {
 
-        // Catch block to handle exceptions
-        catch (SQLException e) {
-
-            // Print the exception
             System.out.println(e);
         }
         return result;
@@ -69,15 +64,15 @@ public class Database {
 
     public void insertLinks(ArrayList<String> links) throws SQLException {
         for (String link : links) {
-            String sqlCmd = "INSERT INTO table1(URL) VALUES " + link + ";";
-            PreparedStatement statement = connection.prepareStatement(sqlCmd);
-            statement.executeQuery();
+            String sqlCmd = "INSERT INTO table1(URL) VALUES ('" + link + "'); ";
+            Statement statement = connection.createStatement();
+            statement.executeUpdate(sqlCmd);
         }
     }
 
     public void insertContent(int id, ArrayList<String> textContent) throws SQLException {
-        String sqlCmd = "INSERT INTO table2(id, text) VALUES " + id + ", " + textContent.toString() + ";";
-        PreparedStatement statement = connection.prepareStatement(sqlCmd);
-        statement.executeQuery();
+        String sqlCmd = "INSERT INTO table2(id, text) VALUES (" + id + ", '" + textContent.toString() + "'); ";
+        Statement statement = connection.createStatement();
+        statement.executeUpdate(sqlCmd);
     }
 }

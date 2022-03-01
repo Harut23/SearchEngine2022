@@ -19,7 +19,7 @@ public class Parser {
         textContent = new ArrayList<>();
     }
 
-    public void parse() throws IOException { //html cody pahum a stringi mej
+    public void parse() throws IOException {
         parseLinks();
         parseText();
     }
@@ -43,9 +43,9 @@ public class Parser {
     private void parseText() {
         Elements elements = document.select("a");
         for (Element element : elements)
-        if (element != null) {
-            textContent.add(element.text());
-        }
+            if (element != null) {
+                textContent.add(element.text());
+            }
     }
 }
 

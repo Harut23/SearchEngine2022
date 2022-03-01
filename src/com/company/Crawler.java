@@ -12,21 +12,21 @@ public class Crawler {
             Database db = new Database("jdbc:mysql://localhost:3306/db?useSSL=false", "root", "harut");
             db.connect();
 //            while (true) {
-                final int linksCount = 40;
-                ArrayList<WebPage> pages = db.getLinks(linksCount);
+            final int linksCount = 40;
+            ArrayList<WebPage> pages = db.getLinks(linksCount);
 
-                for (WebPage page : pages) {
-                    Parser parser = new Parser(page.url);
-                    parser.parse();
-                    db.insertLinks(parser.getLinks());
-                    db.insertContent(page.id, parser.getTextContent());
-                }
+            for (WebPage page : pages) {
+                Parser parser = new Parser(page.url);
+                parser.parse();
+                db.insertLinks(parser.getLinks());
+                db.insertContent(page.id, parser.getTextContent());
+            }
 //            }
         }
-        // Catch block to handle database exceptions
+        // handling database exceptions
         catch (SQLException | ClassNotFoundException | IOException err) {
 
-            // Print the line number where exception occurs
+            // the line number of exception
             err.printStackTrace();
         }
     }
