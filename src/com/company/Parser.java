@@ -9,18 +9,19 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class Parser {
-    String html;
+    ArrayList<String> textContent;
     ArrayList<String> links;
     Document document;
 
     public Parser(String url) throws IOException {
         this.document = Jsoup.connect(url).get();
         links = new ArrayList<>();
+        textContent = new ArrayList<>();
     }
 
     public void parse() throws IOException { //html cody pahum a stringi mej
         parseLinks();
-//        parseText();
+        parseText();
     }
 
     private void parseLinks() {
@@ -31,8 +32,8 @@ public class Parser {
         }
     }
 
-    public String getHtml() {
-        return html;
+    public ArrayList<String> getTextContent() {
+        return textContent;
     }
 
     public ArrayList<String> getLinks() {
@@ -40,11 +41,10 @@ public class Parser {
     }
 
     private void parseText() {
-
-        Element element = document.select("a").first();
-
+        Elements elements = document.select("a");
+        for (Element element : elements)
         if (element != null) {
-            html = element.text();
+            textContent.add(element.text());
         }
     }
 }
