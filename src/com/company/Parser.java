@@ -20,25 +20,16 @@ public class Parser {
 
     public void parse() throws IOException { //html cody pahum a stringi mej
         parseLinks();
-        parseText();
+//        parseText();
     }
 
-    public void parseLinks() {
+    private void parseLinks() {
         Elements urls = document.select("a[href]");
         for (Element link : urls) {
             String current = link.attr("abs:href");
             links.add(current);
         }
     }
-
-//    public void parseText() {
-//
-//        Element element = document.select("a").first();
-//
-//        if (element != null) {
-//            html = element.text();
-//        }
-//    }
 
     public String getHtml() {
         return html;
@@ -47,37 +38,14 @@ public class Parser {
     public ArrayList<String> getLinks() {
         return links;
     }
-/*public static Set<String> fff(String Links) throws IOException { //html cody pahum a stringi mej
 
-        // Set<String>allLinks = findLinks(Links);
-        // HTML = null;
-        Set<String>HTML = new HashSet<>();
+    private void parseText() {
 
-        // for(String st:allLinks) {
-        Document document = Jsoup.connect(String.valueOf(Links)).get();
-        //System.out.println(document.toString());
-        HTML = Collections.singleton(document.toString());
-        //}
-        return  HTML;
+        Element element = document.select("a").first();
+
+        if (element != null) {
+            html = element.text();
+        }
     }
-
-*/
-
-    //Set<String> newList = parse(list);
-/*Document document = Jsoup.parse(String.valueOf(newList));
-    Element link = document.select("a").first();
-
-        System.out.println("Text: " + ((Element) link).text());
-     */
-
-
-
-
-  /*Document document = Jsoup.parse(String.valueOf(newList));
-    Element link = document.select("a").first();
-    System.out.println("Text: " + link.text());
-*/
-
-
 }
 
