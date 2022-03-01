@@ -1,4 +1,5 @@
 package com.company;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -6,48 +7,45 @@ import java.sql.SQLException;
 public class connectionDB {
 
 
+    final String DB_URL = "jdbc:mysql://localhost:3306/db?useSSL=false";
 
+    //  Database credentials
 
-        final String DB_URL = "jdbc:mysql://localhost:3306/db?useSSL=false";
+    // We need two parameters to access the database
+    // Root and password
 
-        //  Database credentials
+    // 1. Root
+    final String USER = "root";
 
-        // We need two parameters to access the database
-        // Root and password
+    // 2. Password to fetch database
+    final String PASS = "harut";
 
-        // 1. Root
-        final String USER = "root";
+    // Connection class for our database connectivity
+    public Connection connectDB() {
+        // Initially setting NULL
+        // to connection class object
+        Connection con = null;
 
-        // 2. Password to fetch database
-        final String PASS = "harut";
+        // Try block to check exceptions
+        try {
 
-        // Connection class for our database connectivity
-        public Connection connectDB()
-        {
-            // Initially setting NULL
-            // to connection class object
-            Connection con = null;
+            // Loading DB(SQL) drivers
+            Class.forName("com.mysql.cj.jdbc.Driver");
 
-            // Try block to check exceptions
-            try {
-
-                // Loading DB(SQL) drivers
-                Class.forName("com.mysql.cj.jdbc.Driver");
-
-                // Registering SQL drivers
-                con = DriverManager.getConnection(DB_URL, USER, PASS);
-            }
-
-            // Catch block to handle database exceptions
-            catch (SQLException | ClassNotFoundException e) {
-                // Print the line number where exception occurs
-                e.printStackTrace();
-            }
-
-            // Returning Connection class object to
-            // be used in (App/Main) GFG class
-            return con;
+            // Registering SQL drivers
+            con = DriverManager.getConnection(DB_URL, USER, PASS);
         }
+
+        // Catch block to handle database exceptions
+        catch (SQLException | ClassNotFoundException e) {
+            // Print the line number where exception occurs
+            e.printStackTrace();
+        }
+
+        // Returning Connection class object to
+        // be used in (App/Main) GFG class
+        return con;
     }
+}
 
 

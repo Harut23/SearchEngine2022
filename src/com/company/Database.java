@@ -50,7 +50,7 @@ public class Database {
                 String url = resultSet.getString("URL");
                 int crawledNumber = resultSet.getInt("CrawledNumber");
 
-                result.add(new WebPage(ID,crawledNumber,url));
+                result.add(new WebPage(ID, crawledNumber, url));
 
             }
 

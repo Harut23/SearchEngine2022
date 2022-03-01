@@ -14,34 +14,31 @@ public class Parser {
     Document document;
 
     public Parser(String url) throws IOException {
-        document = Jsoup.connect(url).get();
+        this.document = Jsoup.connect(url).get();
+        links = new ArrayList<>();
     }
 
-    public void parse() { //html cody pahum a stringi mej
+    public void parse() throws IOException { //html cody pahum a stringi mej
         parseLinks();
         parseText();
-        //System.out.println(document.toString());
-//        html = Collections.singleton(document.toString());
     }
 
-    private void parseLinks() {
-        Elements elements = document.select("a[href]");
-
-
-        for (Element element : elements) {
-            if (element != null) {
-                links.add(element.attr("href"));
-            }
+    public void parseLinks() {
+        Elements urls = document.select("a[href]");
+        for (Element link : urls) {
+            String current = link.attr("abs:href");
+            links.add(current);
         }
     }
-    private void parseText() {
 
-        Element element = document.select("a").first();
-
-        if (element != null) {
-            html = element.text();
-        }
-    }
+//    public void parseText() {
+//
+//        Element element = document.select("a").first();
+//
+//        if (element != null) {
+//            html = element.text();
+//        }
+//    }
 
     public String getHtml() {
         return html;
@@ -50,7 +47,7 @@ public class Parser {
     public ArrayList<String> getLinks() {
         return links;
     }
-/*public static Set<String> parse(String Links) throws IOException { //html cody pahum a stringi mej
+/*public static Set<String> fff(String Links) throws IOException { //html cody pahum a stringi mej
 
         // Set<String>allLinks = findLinks(Links);
         // HTML = null;
@@ -63,8 +60,8 @@ public class Parser {
         //}
         return  HTML;
     }
-*/
 
+*/
 
     //Set<String> newList = parse(list);
 /*Document document = Jsoup.parse(String.valueOf(newList));
@@ -80,15 +77,6 @@ public class Parser {
     Element link = document.select("a").first();
     System.out.println("Text: " + link.text());
 */
-
-        /*
-public static void ParseTitlesAndLinks(String list) throws IOException {
-
-    Document document = Jsoup.connect(String.valueOf("https://4pda.to/")).get();
-    Elements titleElements = document.getElementsByAttributeValue("itemprop","url");
-    titleElements.forEach(titleElement -> System.out.println(titleElement.attr("title")+"|" +titleElement.attr("href")));
-
-    }*/
 
 
 }
